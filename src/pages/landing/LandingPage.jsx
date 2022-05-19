@@ -1,12 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import "./landing.css";
 
 const LandingPage = () => {
+  const navigate = useNavigate();
   return (
     <>
-      <header className="header">
-        <h1>Your Note</h1>
-        <button className="btn btn-secondary text-s">Login</button>
-      </header>
       <div className="page-content">
         <h1 className="text-large">Tame your work, organize your life.</h1>
         <p>
@@ -14,9 +12,19 @@ const LandingPage = () => {
           schedule all in one place.
         </p>
         <div className="cta-actions">
-          <button className="btn btn-primary text-s">Signup for free</button>
+          <button
+            className="btn btn-primary text-s"
+            onClick={() => navigate("/signup")}
+          >
+            Signup for free
+          </button>
           <p>Already have account ?</p>
-          <button class="btn btn-secondary-text text-s">Login</button>
+          <button
+            class="btn btn-secondary-text text-s"
+            onClick={() => navigate("/login")}
+          >
+            Login
+          </button>
         </div>
       </div>
     </>

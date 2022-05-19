@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { Navbar } from "./components/navbar/Navbar";
 import {
   LandingPage,
   Login,
@@ -12,6 +13,7 @@ import {
 function App() {
   return (
     <div className="App">
+      <Navbar />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />

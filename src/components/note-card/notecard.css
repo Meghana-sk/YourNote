@@ -1,0 +1,23 @@
+.note-card {
+    display: flex;
+    flex-direction: column;
+    max-width: 25rem;
+    max-width: 18rem;
+    gap: 0.5rem;
+    /* max-height: 15rem; */
+    background-color: gray;
+    padding: 1rem;
+    border-radius: 5px;
+    overflow-y: auto;
+}
+
+.note-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.db-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
