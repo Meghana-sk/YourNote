@@ -4,7 +4,8 @@
     padding: 1rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    justify-content: center;
     position: sticky;
     top: 0;
     background-color: white;
@@ -18,7 +19,9 @@
     max-width: 450px;
     display: flex;
     flex-grow: 1;
-    margin: 0 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
     border: 1px solid var(--lightish-gray-shade);
 }
 
@@ -41,10 +44,6 @@
     color: inherit;
 }
 
-.brand-name, .user-section > .user-name, .user-section i  {
-    /* color: var(--white-smoke); */
-}
-
 .nav .user-section i {
     display: flex;
     margin-left: 5px;
@@ -58,6 +57,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    margin-left: auto;
 }
 
 .user-section:hover {

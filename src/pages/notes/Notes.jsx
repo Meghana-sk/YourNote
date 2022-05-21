@@ -1,5 +1,5 @@
+import { NotesModal } from "../../components/modals/NoteModal";
 const Notes = () => {
-  return <p>Note</p>;
+  return <NotesModal />;
 };
-
 export { Notes };

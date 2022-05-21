@@ -21,10 +21,10 @@ const NoteCard = () => {
             <i className="fas fa-trash" />
           </button>
           <button title="Edit" className="btn btn-float">
-            <i className="fas fa-pen-square"></i>
+            <i className="fas fa-pen"></i>
           </button>
           <button title="Archive" className="btn btn-float">
-            <i className="fas fa-box" />
+            <i className="fas fa-archive" />
           </button>
         </div>
       </footer>

@@ -1,21 +1,27 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./navbar.css";
 
 export const Navbar = () => {
-  const navigate = useNavigate();
+  const location = useLocation();
   const isUser = true;
 
   return (
     <nav className="nav bg-dark">
-      <Link to="/" className="brand-name text-l fw-900">
-        Your Note
-      </Link>
-      <div className="search-box">
-        <input type="text" placeholder="Search videos" />
-        <button className="search-btn">
-          <i className="fas fa-search" />
-        </button>
-      </div>
+      {location.pathname !== "/home" && (
+        <Link to="/" className="brand-name text-l fw-900">
+          Your Note
+        </Link>
+      )}
+      {location.pathname !== "/" &&
+        location.pathname !== "/login" &&
+        location.pathname !== "/signup" && (
+          <div className="search-box">
+            <input type="text" placeholder="Search notes..." />
+            <button className="search-btn">
+              <i className="fas fa-search" />
+            </button>
+          </div>
+        )}
       <div className="user-section">
         {isUser && (
           <span className="user-name">
