@@ -1,0 +1,51 @@
+.bg-side-nav-dark {
+    background-color: #282b2b;
+    max-width: 28rem;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0.5rem;
+    border-right: 1px solid var(--white-smoke);
+    scroll-behavior: auto;
+}
+
+.side-nav .brand-name {
+    color: var(--white-smoke);
+}
+
+.divider {
+    border: 1px solid var(--white-smoke);
+}
+
+.bg-side-nav-dark .nav-item:hover {
+    background-color: rgb(169, 161, 161);
+}
+
+.bg-side-nav-dark .nav-item {
+    display: flex;
+    padding: 1rem;
+    gap: 1.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.bg-side-nav-dark .nav-item i {
+    color: whitesmoke;
+}
+
+.bg-side-nav-dark .nav-item i:hover {
+    color: inherit;
+}
+
+.add-tag-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.add-tag-container .tag-label {
+    color: whitesmoke;
+}
+
+
