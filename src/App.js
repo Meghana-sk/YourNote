@@ -1,4 +1,6 @@
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Navbar } from "./components/navbar/Navbar";
 import {
   LandingPage,
@@ -23,6 +25,12 @@ function App() {
         <Route path="/archive" element={<Archive />} />
         <Route path="/trash" element={<Trash />} />
       </Routes>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        closeOnClick
+        theme="colored"
+      />
     </div>
   );
 }

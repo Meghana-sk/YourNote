@@ -20,7 +20,7 @@ const LandingPage = () => {
           </button>
           <p>Already have account ?</p>
           <button
-            class="btn btn-secondary-text text-s"
+            className="btn btn-secondary-text text-s"
             onClick={() => navigate("/login")}
           >
             Login

@@ -6,11 +6,11 @@ const Home = () => {
       <NotesSideNav />
       <div className="divider"></div>
       <div className="add-note-actions">
-        <button class="btn btn-primary text-s">
-          <i class="fas fa-plus"></i>Add note
+        <button className="btn btn-primary text-s">
+          <i className="fas fa-plus"></i>Add note
         </button>
-        <button class="btn btn-secondary text-s">
-          <i class="fas fa-filter"></i>Filter by
+        <button className="btn btn-secondary text-s">
+          <i className="fas fa-filter"></i>Filter by
         </button>
       </div>
       <div className="notes-container">
