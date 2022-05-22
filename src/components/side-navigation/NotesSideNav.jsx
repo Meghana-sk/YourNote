@@ -67,7 +67,7 @@ const NotesSideNav = () => {
         <button className="btn btn-float nav-item">
           <i className="fas fa-plus"></i>
         </button>
-        <label>Add tag</label>
+        <label className="tag-label">Add tag</label>
       </div>
     </aside>
   );
