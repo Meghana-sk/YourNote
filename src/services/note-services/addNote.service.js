@@ -1,0 +1,29 @@
+import axios from "axios";
+import { toast } from "react-toastify";
+import { ADD_NOTE } from "../../shared/variables";
+
+const addNewNoteService = async ({ inputData, token, noteDispatch }) => {
+  console.log(inputData, token, noteDispatch);
+  try {
+    const addNewNoteResponse = await axios.post(
+      "/api/notes",
+      { inputData },
+      { headers: { authorization: token } }
+    );
+    console.log("add note", addNewNoteResponse);
+    if (addNewNoteResponse.status === 201) {
+      noteDispatch({
+        type: ADD_NOTE,
+        payload: { notes: addNewNoteResponse.data.notes },
+      });
+      toast.success("Note added successfully.");
+    } else {
+      toast.warning("Something went wrong. Please try again");
+    }
+  } catch (error) {
+    // toast.error(error.addNewNoteResponse.data.errors[0]);
+    console.error("--", error);
+  }
+};
+
+export { addNewNoteService };
