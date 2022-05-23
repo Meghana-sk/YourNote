@@ -3,14 +3,12 @@ import { toast } from "react-toastify";
 import { ADD_NOTE } from "../../shared/variables";
 
 const addNewNoteService = async ({ inputData, token, noteDispatch }) => {
-  console.log(inputData, token, noteDispatch);
   try {
     const addNewNoteResponse = await axios.post(
       "/api/notes",
-      { inputData },
+      { note: inputData },
       { headers: { authorization: token } }
     );
-    console.log("add note", addNewNoteResponse);
     if (addNewNoteResponse.status === 201) {
       noteDispatch({
         type: ADD_NOTE,

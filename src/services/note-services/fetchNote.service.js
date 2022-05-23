@@ -1,5 +1,4 @@
 import axios from "axios";
-import { toast } from "react-toastify";
 import { FETCH_NOTES } from "../../shared/variables";
 
 const fetchNotesService = async (token, noteDispatch) => {
@@ -12,11 +11,8 @@ const fetchNotesService = async (token, noteDispatch) => {
         type: FETCH_NOTES,
         payload: { notes: fetchNotesResponse.data.notes },
       });
-      console.log("notes availanle", fetchNotesResponse);
     }
-  } catch (error) {
-    toast.error(error.fetchNotesResponse.data.errors[0]);
-  }
+  } catch (error) {}
 };
 
 export { fetchNotesService };

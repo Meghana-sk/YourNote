@@ -6,14 +6,12 @@ import { formatDate } from "../../backend/utils/authUtils";
 import { useNote } from "../../context/note-functions/note-context";
 import { useAuth } from "../../context/authentication/auth-context";
 
-const NotesModal = () => {
-  const currentDate = new Date();
-
+const NotesModal = ({ setOpenModal }) => {
   const defaultNoteData = {
     title: "",
     content: "",
-    color: "Blue",
-    // tags: [],
+    color: "yellow",
+    tags: [],
     priority: "low",
     date: formatDate(),
   };
@@ -24,6 +22,11 @@ const NotesModal = () => {
   const [inputData, setInputData] = useState(defaultNoteData);
   const addNewNoteHandler = () => {
     addNewNoteService({ inputData, token, noteDispatch });
+    setOpenModal(false);
+  };
+  const inputHandler = (e) => {
+    const { name, value } = e.target;
+    setInputData((prev) => ({ ...prev, [name]: value }));
   };
   return (
     <div className="notes-editor-wrapper">
@@ -39,7 +42,7 @@ const NotesModal = () => {
         />
         <NotesEditor
           className="rich-editor"
-          value={inputData.content || ""}
+          value={inputData.content}
           setValue={(content) => setInputData((data) => ({ ...data, content }))}
         />
         <div className="editor-styles">
@@ -52,16 +55,23 @@ const NotesModal = () => {
           </div>
           <div className="options">
             <label>Priority</label>
-            <select>
+            <select value={inputData.priority} onChange={inputHandler}>
               <option>Low</option>
               <option>High</option>
             </select>
           </div>
           <div className="options">
-            <label>Color</label>
-            <select>
+            <label htmlFor="color">Color</label>
+            <select
+              id="color"
+              name="color"
+              value={inputData.color}
+              onChange={inputHandler}
+            >
+              <option>Yellow</option>
               <option>Red</option>
               <option>Blue</option>
+              <option>Green</option>
             </select>
           </div>
         </div>

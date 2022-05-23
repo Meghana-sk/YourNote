@@ -12,6 +12,10 @@ const noteReducer = (state, action) => {
     case ADD_NOTE:
     case DELETE_NOTE:
     case EDIT_NOTE:
+      return {
+        ...state,
+        notes: action.payload.notes,
+      };
     case CLEAR_NOTES:
       return {
         ...state,

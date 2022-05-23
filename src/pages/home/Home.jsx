@@ -1,15 +1,13 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useNote } from "../../context/note-functions/note-context";
 import { useAuth } from "../../context/authentication/auth-context";
 import { NotesSideNav, NoteCard } from "../../components/";
 import "./home.css";
 import { fetchNotesService } from "../../services";
+import { NotesModal } from "../../components/modals/NoteModal";
 const Home = () => {
-  const {
-    noteState: { notes },
-    noteDispatch,
-  } = useNote();
+  const [openModal, setOpenModal] = useState(false);
+  const { noteState, noteDispatch } = useNote();
   const {
     authState: { token },
   } = useAuth();
@@ -17,15 +15,15 @@ const Home = () => {
     fetchNotesService(token, noteDispatch);
   }, []);
 
-  const navigate = useNavigate();
   return (
     <div className="home-container">
       <NotesSideNav />
+      {openModal ? <NotesModal setOpenModal={setOpenModal} /> : null}
       <div className="divider"></div>
       <div className="add-note-actions">
         <button
           className="btn btn-primary text-s"
-          onClick={() => navigate("/notes")}
+          onClick={() => setOpenModal(true)}
         >
           <i className="fas fa-plus"></i>Add note
         </button>
@@ -34,8 +32,8 @@ const Home = () => {
         </button>
       </div>
       <div className="notes-container">
-        {notes.length ? (
-          notes.map((note) => <NoteCard />)
+        {noteState.notes.length ? (
+          noteState.notes.map((note) => <NoteCard key={note._id} note={note} />)
         ) : (
           <p>Create your first note</p>
         )}
