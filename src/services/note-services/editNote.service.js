@@ -18,7 +18,9 @@ const editNoteService = async ({ inputData, token, noteDispatch }) => {
     } else {
       toast.warning("Something went wrong. Please try again");
     }
-  } catch (error) {}
+  } catch (error) {
+    toast.error(error.response.data.errors[0]);
+  }
 };
 
 export { editNoteService };

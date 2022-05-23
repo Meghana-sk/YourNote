@@ -4,8 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
-import { AuthProvider } from "./context/authentication/auth-context";
-import { NoteProvider } from "./context/note-functions/note-context";
+import { AuthProvider, NoteProvider } from "./context";
 
 // Call make Server
 makeServer();

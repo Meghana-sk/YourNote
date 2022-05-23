@@ -6,6 +6,7 @@ import { formatDate } from "../../backend/utils/authUtils";
 import { useNote } from "../../context/note-functions/note-context";
 import { useAuth } from "../../context/authentication/auth-context";
 import { editNoteService } from "../../services/note-services/editNote.service";
+import { toast } from "react-toastify";
 
 const NotesModal = ({ setOpenModal, editNote = false, noteData }) => {
   const defaultNoteData = editNote
@@ -24,10 +25,16 @@ const NotesModal = ({ setOpenModal, editNote = false, noteData }) => {
   } = useAuth();
   const [inputData, setInputData] = useState(defaultNoteData);
   const addNewNoteHandler = () => {
-    editNote
-      ? editNoteService({ inputData, token, noteDispatch })
-      : addNewNoteService({ inputData, token, noteDispatch });
-    setOpenModal(false);
+    if (inputData.title && inputData.content) {
+      editNote
+        ? editNoteService({ inputData, token, noteDispatch })
+        : addNewNoteService({ inputData, token, noteDispatch });
+      setOpenModal(false);
+    } else if (inputData.title === "") {
+      toast.error("Note title can not be empty");
+    } else if (inputData.content === "") {
+      toast.error("Note can not be empty");
+    }
   };
   const inputHandler = (e) => {
     const { name, value } = e.target;
@@ -36,6 +43,11 @@ const NotesModal = ({ setOpenModal, editNote = false, noteData }) => {
   return (
     <div className="notes-editor-wrapper">
       <div className="note-editor">
+        <div className="close-icon">
+          <button className="btn btn-float" onClick={() => setOpenModal(false)}>
+            <i className="fas fa-times "></i>
+          </button>
+        </div>
         <h3>Note</h3>
         <input
           className="input-text"
@@ -92,7 +104,7 @@ const NotesModal = ({ setOpenModal, editNote = false, noteData }) => {
           </div>
         </div>
         <button className="btn btn-primary" onClick={addNewNoteHandler}>
-          {editNote ? "Edit note" : "Add note"}
+          {editNote ? "Save note" : "Add note"}
         </button>
       </div>
     </div>

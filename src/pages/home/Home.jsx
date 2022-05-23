@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { useNote } from "../../context/note-functions/note-context";
-import { useAuth } from "../../context/authentication/auth-context";
+import { useAuth, useNote } from "../../context";
 import { NotesSideNav, NoteCard } from "../../components/";
-import "./home.css";
 import { fetchNotesService } from "../../services";
-import { NotesModal } from "../../components/modals/NoteModal";
+import { NotesModal } from "../../components";
+import "./home.css";
+
 const Home = () => {
   const [openModal, setOpenModal] = useState(false);
   const { noteState, noteDispatch } = useNote();
