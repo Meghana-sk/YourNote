@@ -1,8 +1,11 @@
-import "./notecard.css";
+import { useState } from "react";
 import HtmlParser from "react-html-parser/lib/HtmlParser";
 import { getDate, getTime } from "../../utils/date-functions/date";
+import { NotesModal } from "../modals/NoteModal";
+import "./notecard.css";
 
 const NoteCard = ({ note }) => {
+  const [showNoteModal, setShowNoteModal] = useState(false);
   return (
     <div className={`note-card ${note.color.toLowerCase()}`}>
       <header className="note-header">
@@ -20,13 +23,24 @@ const NoteCard = ({ note }) => {
           <button title="delete" className="btn btn-float">
             <i className="fas fa-trash" />
           </button>
-          <button title="Edit" className="btn btn-float">
+          <button
+            title="Edit"
+            className="btn btn-float"
+            onClick={() => setShowNoteModal(true)}
+          >
             <i className="fas fa-pen"></i>
           </button>
           <button title="Archive" className="btn btn-float">
             <i className="fas fa-archive" />
           </button>
         </div>
+        {showNoteModal ? (
+          <NotesModal
+            editNote={true}
+            noteData={note}
+            setOpenModal={setShowNoteModal}
+          />
+        ) : null}
       </footer>
     </div>
   );

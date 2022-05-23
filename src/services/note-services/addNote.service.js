@@ -18,10 +18,7 @@ const addNewNoteService = async ({ inputData, token, noteDispatch }) => {
     } else {
       toast.warning("Something went wrong. Please try again");
     }
-  } catch (error) {
-    // toast.error(error.addNewNoteResponse.data.errors[0]);
-    console.error("--", error);
-  }
+  } catch (error) {}
 };
 
 export { addNewNoteService };
