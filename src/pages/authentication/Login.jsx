@@ -3,7 +3,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import "./authentication.css";
 import { loginService } from "../../services";
-import { useAuth } from "../../context/authentication/auth-context";
+import { useAuth } from "../../context";
 import { LOGIN } from "../../shared/variables";
 
 const Login = () => {
@@ -25,7 +25,8 @@ const Login = () => {
   };
 
   const userCredentialChangeHandler = (event) => {
-    setUser({ ...user, [event.target]: event.target.value });
+    console.log(event.target.name);
+    setUser({ ...user, [event.target.name]: event.target.value });
   };
 
   const loginHandler = async (e) => {
@@ -49,7 +50,7 @@ const Login = () => {
           throw new Error("Something went wrong! Please try again later");
         }
       } catch (error) {
-        toast.error(error.loginResponse.data.errors[0]);
+        toast.error(error.response.data.errors[0]);
       }
     }
   };

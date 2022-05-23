@@ -14,7 +14,7 @@ const modules = {
   ],
 };
 
-const NotesEditor = () => {
+const NotesEditor = ({ value, setValue }) => {
   return (
     <ReactQuill
       theme="snow"
@@ -22,6 +22,8 @@ const NotesEditor = () => {
       modules={modules}
       className="react-quill-container"
       placeholder="Add your note here..."
+      value={value}
+      onChange={setValue}
     />
   );
 };

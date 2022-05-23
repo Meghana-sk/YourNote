@@ -7,7 +7,6 @@ import {
   Login,
   Signup,
   Home,
-  Notes,
   Archive,
   Trash,
   Error404,
@@ -27,14 +26,6 @@ function App() {
           element={
             <RequiresAuth>
               <Home />
-            </RequiresAuth>
-          }
-        />
-        <Route
-          path="/notes"
-          element={
-            <RequiresAuth>
-              <Notes />
             </RequiresAuth>
           }
         />

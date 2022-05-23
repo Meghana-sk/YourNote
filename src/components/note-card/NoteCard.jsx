@@ -1,32 +1,46 @@
+import { useState } from "react";
+import HtmlParser from "react-html-parser/lib/HtmlParser";
+import { getDate, getTime } from "../../utils/date-functions/date";
+import { NotesModal } from "../modals/NoteModal";
 import "./notecard.css";
 
-const NoteCard = () => {
+const NoteCard = ({ note }) => {
+  const [showNoteModal, setShowNoteModal] = useState(false);
   return (
-    <div className="note-card">
+    <div className={`note-card ${note.color.toLowerCase()}`}>
       <header className="note-header">
-        <h2 className="title fw-600">My Notes</h2>
+        <h2 className="title fw-600">{note.title}</h2>
         <button title="pin" className="btn btn-float">
           <i className="fas fa-map-pin" />
         </button>
       </header>
-      <p className="note-content">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda
-        quibusdam molestiae, vitae natus, placeat voluptate quisquam voluptatem
-        ullam illum quam tempora officia sapiente perspiciatis.
-      </p>
-      <footer className="">
-        <div className="update-date">02/04/2020</div>
+      <p className="note-content">{HtmlParser(note.content)}</p>
+      <footer className="note-footer">
+        <div className="update-date">
+          {getDate(note.date)} | {getTime(note.date)}
+        </div>
         <div className="db-actions">
           <button title="delete" className="btn btn-float">
             <i className="fas fa-trash" />
           </button>
-          <button title="Edit" className="btn btn-float">
+          <button
+            title="Edit"
+            className="btn btn-float"
+            onClick={() => setShowNoteModal(true)}
+          >
             <i className="fas fa-pen"></i>
           </button>
           <button title="Archive" className="btn btn-float">
             <i className="fas fa-archive" />
           </button>
         </div>
+        {showNoteModal ? (
+          <NotesModal
+            editNote={true}
+            noteData={note}
+            setOpenModal={setShowNoteModal}
+          />
+        ) : null}
       </footer>
     </div>
   );

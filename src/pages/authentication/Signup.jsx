@@ -3,7 +3,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import "./authentication.css";
 import { signupService } from "../../services";
-import { useAuth } from "../../context/authentication/auth-context";
+import { useAuth } from "../../context";
 import { SIGNUP } from "../../shared/variables";
 const Signup = () => {
   const navigate = useNavigate();
@@ -56,12 +56,13 @@ const Signup = () => {
             },
           });
           toast.success("Successfully signed up");
+          console.log("sign u");
           navigate("/home", { replace: true });
         } else {
           toast.error("Something went wrong.Please try again :(");
         }
       } catch (error) {
-        toast.error(error.signupResponse.data.errors[0]);
+        toast.error(error.response.data.errors[0]);
       }
     }
   };
