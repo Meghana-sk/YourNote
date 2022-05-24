@@ -15,7 +15,7 @@ const NotesSideNav = () => {
         <span className="text-l">Your Note</span>
       </NavLink>
       <div className="divider"></div>
-      <NavLink to="/notes" style={getActiveStyle}>
+      <NavLink to="/home" style={getActiveStyle}>
         <div className="nav-item">
           <span>
             <i className="far fa-lightbulb"></i>

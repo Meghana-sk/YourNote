@@ -25,7 +25,6 @@ const Login = () => {
   };
 
   const userCredentialChangeHandler = (event) => {
-    console.log(event.target.name);
     setUser({ ...user, [event.target.name]: event.target.value });
   };
 
