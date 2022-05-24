@@ -5,7 +5,6 @@ import {
   LOGOUT,
   CLEAR_ARCHIVES,
   CLEAR_NOTES,
-  CLEAR_ARCHIVES,
   CLEAR_TRASH,
 } from "../../shared/variables";
 import "./navbar.css";
