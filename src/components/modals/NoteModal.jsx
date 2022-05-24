@@ -72,8 +72,8 @@ const NotesModal = ({ setOpenModal, editNote = false, noteData }) => {
               value={inputData.tags}
               onChange={inputHandler}
             >
-              <option>Work</option>
-              <option>Personal</option>
+              <option value="work">Work</option>
+              <option value="personal">Personal</option>
             </select>
           </div>
           <div className="options">
@@ -84,8 +84,8 @@ const NotesModal = ({ setOpenModal, editNote = false, noteData }) => {
               value={inputData.priority}
               onChange={inputHandler}
             >
-              <option>Low</option>
-              <option>High</option>
+              <option value="low">Low</option>
+              <option value="high">High</option>
             </select>
           </div>
           <div className="options">
@@ -96,10 +96,10 @@ const NotesModal = ({ setOpenModal, editNote = false, noteData }) => {
               value={inputData.color}
               onChange={inputHandler}
             >
-              <option>Yellow</option>
-              <option>Red</option>
-              <option>Blue</option>
-              <option>Green</option>
+              <option value="yellow">Yellow</option>
+              <option value="red">Red</option>
+              <option value="blue">Blue</option>
+              <option value="green">Green</option>
             </select>
           </div>
         </div>

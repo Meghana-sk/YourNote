@@ -1,7 +1,12 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAuth } from "../../context/authentication/auth-context";
-import { LOGOUT } from "../../shared/variables";
+import { useAuth, useArchive, useTrash, useNote } from "../../context";
+import {
+  LOGOUT,
+  CLEAR_ARCHIVES,
+  CLEAR_NOTES,
+  CLEAR_TRASH,
+} from "../../shared/variables";
 import "./navbar.css";
 
 export const Navbar = () => {
@@ -9,6 +14,9 @@ export const Navbar = () => {
   const { authState, authDispatch } = useAuth();
   const isUser = authState.token || authState.user ? true : false;
   const navigate = useNavigate();
+  const { archiveDispatch } = useArchive();
+  const { trashDispatch } = useTrash();
+  const { noteDispatch } = useNote();
 
   const logoutHandler = () => {
     if (authState.token) {
@@ -16,6 +24,9 @@ export const Navbar = () => {
       navigate("/");
       localStorage.removeItem("token");
       authDispatch({ type: LOGOUT });
+      trashDispatch({ type: CLEAR_TRASH });
+      archiveDispatch({ type: CLEAR_ARCHIVES });
+      noteDispatch({ type: CLEAR_NOTES });
     } else {
       navigate("/login");
     }

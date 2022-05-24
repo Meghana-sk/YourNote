@@ -56,7 +56,6 @@ const Signup = () => {
             },
           });
           toast.success("Successfully signed up");
-          console.log("sign u");
           navigate("/home", { replace: true });
         } else {
           toast.error("Something went wrong.Please try again :(");
