@@ -3,11 +3,14 @@ import { useLocation } from "react-router-dom";
 import HtmlParser from "react-html-parser/lib/HtmlParser";
 import { getDate, getTime } from "../../utils/date-functions/date";
 import { NotesModal } from "../modals/NoteModal";
-import { useTrash, useNote, useAuth } from "../../context";
+import { useTrash, useNote, useAuth, useArchive } from "../../context";
 import {
   moveToTrashService,
   restoreFromTrashService,
   deleteFromTrashService,
+  addNoteToArchiveService,
+  restoreFromArchiveService,
+  deleteFromArchiveService,
 } from "../../services";
 import "./notecard.css";
 
@@ -19,17 +22,28 @@ const NoteCard = ({ note }) => {
   } = useAuth();
   const { noteDispatch } = useNote();
   const { trashDispatch } = useTrash();
+  const { archiveDispatch } = useArchive();
 
   const trashHandler = () => {
     if (pathname === "/home") {
       moveToTrashService({ token, note, noteDispatch, trashDispatch });
     } else if (pathname === "/trash") {
       deleteFromTrashService({ token, note, trashDispatch });
+    } else if (pathname === "/archive") {
+      deleteFromArchiveService({ token, note, archiveDispatch });
     }
   };
 
   const restoreNoteFromTrashHandler = () => {
     restoreFromTrashService({ token, note, noteDispatch, trashDispatch });
+  };
+
+  const archiveHandler = () => {
+    addNoteToArchiveService({ token, note, noteDispatch, archiveDispatch });
+  };
+
+  const restoreFromArchiveHandler = () => {
+    restoreFromArchiveService({ token, note, noteDispatch, archiveDispatch });
   };
   return (
     <div className={`note-card ${note.color.toLowerCase()}`}>
@@ -52,7 +66,7 @@ const NoteCard = ({ note }) => {
           >
             <i className="fas fa-trash" />
           </button>
-          {pathname !== "/trash" && (
+          {pathname !== "/trash" && pathname !== "/archive" && (
             <button
               title="Edit"
               className="btn btn-float"
@@ -61,11 +75,25 @@ const NoteCard = ({ note }) => {
               <i className="fas fa-pen"></i>
             </button>
           )}
-          {pathname !== "/trash" && (
-            <button title="Archive" className="btn btn-float">
-              <i className="fas fa-archive" />
-            </button>
-          )}
+          {pathname !== "/trash" ? (
+            pathname === "/archive" ? (
+              <button
+                title="unArchive"
+                className="btn btn-float"
+                onClick={restoreFromArchiveHandler}
+              >
+                <i className="fas fa-archive" />
+              </button>
+            ) : (
+              <button
+                title="Archive"
+                className="btn btn-float"
+                onClick={archiveHandler}
+              >
+                <i className="fas fa-archive" />
+              </button>
+            )
+          ) : null}
           {pathname === "/trash" && (
             <button
               title="restore note"
