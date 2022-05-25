@@ -1,16 +1,32 @@
 import { useEffect, useState } from "react";
-import { useAuth, useNote } from "../../context";
-import { NotesSideNav, NoteCard } from "../../components/";
+import { useAuth, useNote, useFilter } from "../../context";
+import {
+  NotesSideNav,
+  NoteCard,
+  NotesModal,
+  FilterPopup,
+} from "../../components/";
 import { fetchNotesService } from "../../services";
-import { NotesModal } from "../../components";
+import { sortNotesByPriority } from "../../utils/helpers/sortByPriority";
+import { sortNotesByDate } from "../../utils/helpers/sortByDate";
 import "./home.css";
 
 const Home = () => {
   const [openModal, setOpenModal] = useState(false);
-  const { noteState, noteDispatch } = useNote();
+  const [openFilter, setOpenFilter] = useState(false);
+  const {
+    noteState: { notes },
+    noteDispatch,
+  } = useNote();
   const {
     authState: { token },
   } = useAuth();
+  const {
+    filterState: { sortByDate, sortByPriority },
+  } = useFilter();
+
+  let filteredNotes = sortNotesByPriority(notes, sortByPriority);
+  filteredNotes = sortNotesByDate(filteredNotes, sortByDate);
   useEffect(() => {
     fetchNotesService(token, noteDispatch);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -28,17 +44,21 @@ const Home = () => {
         >
           <i className="fas fa-plus"></i>Add note
         </button>
-        <button className="btn btn-secondary text-s">
+        <button
+          className="btn btn-secondary text-s"
+          onClick={() => setOpenFilter(true)}
+        >
           <i className="fas fa-filter"></i>Filter by
         </button>
       </div>
       <div className="notes-container">
-        {noteState.notes.length ? (
-          noteState.notes.map((note) => <NoteCard key={note._id} note={note} />)
+        {filteredNotes.length ? (
+          filteredNotes.map((note) => <NoteCard key={note._id} note={note} />)
         ) : (
           <p>Create your first note</p>
         )}
       </div>
+      {openFilter && <FilterPopup setOpenFilter={setOpenFilter} />}
     </div>
   );
 };

@@ -49,11 +49,19 @@ const NoteCard = ({ note }) => {
     <div className={`note-card ${note.color.toLowerCase()}`}>
       <header className="note-header">
         <h2 className="title fw-600">{note.title}</h2>
+        {note.priority ? (
+          <p className="priority">{note.priority.toUpperCase()}</p>
+        ) : null}
         <button title="pin" className="btn btn-float">
           <i className="fas fa-map-pin" />
         </button>
       </header>
       <div className="note-content">{HtmlParser(note.content)}</div>
+      {note.tags !== "" ? (
+        <div className="tag-section">
+          <div className="tag">{note.tags}</div>
+        </div>
+      ) : null}
       <footer className="note-footer">
         <div className="update-date">
           {getDate(note.date)} | {getTime(note.date)}

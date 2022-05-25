@@ -16,8 +16,6 @@ const NotesSideNav = () => {
   const {
     tagState: { tags },
   } = useTag();
-  const { tagState } = useTag();
-  console.log(tagState);
   return (
     <aside className="side-nav bg-side-nav-dark">
       <NavLink to="/notes" style={getActiveStyle}>
@@ -48,14 +46,12 @@ const NotesSideNav = () => {
           <span>Trash</span>
         </div>
       </NavLink>
-      {/* <NavLink to="/home" style={getActiveStyle}> */}
       <div className="nav-item">
         <span>
           <i className="fas fa-tags"></i>
         </span>
         <span style={{ color: "whitesmoke" }}>Tags</span>
       </div>
-      {/* </NavLink> */}
       {tags.length
         ? tags.map((tag) => (
             <NavLink to={`/tags/${tag}`} style={getActiveStyle}>
@@ -68,14 +64,6 @@ const NotesSideNav = () => {
             </NavLink>
           ))
         : null}
-      {/* <NavLink to="/home" style={getActiveStyle}>
-        <div className="nav-item">
-          <span>
-            <i className="fas fa-tag"></i>
-          </span>
-          <span>Personal</span>
-        </div>
-      </NavLink> */}
       <div className="add-tag-container">
         <button className="btn nav-item" onClick={() => setOpenTagModal(true)}>
           <i className="fas fa-plus"></i>
