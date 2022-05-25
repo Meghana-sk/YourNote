@@ -3,6 +3,7 @@ export { signupService } from "./auth-services/signup.service";
 
 export { fetchNotesService } from "./note-services/fetchNote.service";
 export { addNewNoteService } from "./note-services/addNote.service";
+export { editNoteService } from "./note-services/editNote.service";
 
 export { fetchTrashNotesService } from "./trash-services/fetchTrashNotes.service";
 export { moveToTrashService } from "./trash-services/moveToTrash.service";

@@ -14,6 +14,10 @@
     color: var(--white-smoke);
 }
 
+.side-nav .nav-item span {
+    color: var(--white-smoke);
+}
+
 .divider {
     border: 1px solid var(--white-smoke);
 }
@@ -48,4 +52,7 @@
     color: whitesmoke;
 }
 
+.nav-item .tags {
+    margin-left: 20px;
+}
 

@@ -3,9 +3,8 @@ import { NotesEditor } from "../notes-editor/NotesEditor";
 import "./notesmodal.css";
 import { addNewNoteService } from "../../services";
 import { formatDate } from "../../backend/utils/authUtils";
-import { useNote } from "../../context/note-functions/note-context";
-import { useAuth } from "../../context/authentication/auth-context";
-import { editNoteService } from "../../services/note-services/editNote.service";
+import { useNote, useAuth, useTag } from "../../context";
+import { editNoteService } from "../../services";
 import { toast } from "react-toastify";
 
 const NotesModal = ({ setOpenModal, editNote = false, noteData }) => {
@@ -23,6 +22,9 @@ const NotesModal = ({ setOpenModal, editNote = false, noteData }) => {
   const {
     authState: { token },
   } = useAuth();
+  const {
+    tagState: { tags },
+  } = useTag();
   const [inputData, setInputData] = useState(defaultNoteData);
   const addNewNoteHandler = () => {
     if (inputData.title && inputData.content) {
@@ -72,8 +74,10 @@ const NotesModal = ({ setOpenModal, editNote = false, noteData }) => {
               value={inputData.tags}
               onChange={inputHandler}
             >
-              <option value="work">Work</option>
-              <option value="personal">Personal</option>
+              <option value="">Select tag</option>
+              {tags.map((tag) => (
+                <option value={tag}>{tag}</option>
+              ))}
             </select>
           </div>
           <div className="options">

@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Navbar } from "./components/navbar/Navbar";
+import { Navbar } from "./components";
 import {
   LandingPage,
   Login,
@@ -9,6 +9,7 @@ import {
   Home,
   Archive,
   Trash,
+  Tags,
   Error404,
 } from "./pages";
 import { RequiresAuth } from "./routes/privateRoute/RequiresAuth";
@@ -42,6 +43,14 @@ function App() {
           element={
             <RequiresAuth>
               <Trash />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/tags/:tagname"
+          element={
+            <RequiresAuth>
+              <Tags />
             </RequiresAuth>
           }
         />

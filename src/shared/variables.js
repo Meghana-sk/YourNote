@@ -43,3 +43,8 @@ export {
   DELETE_FROM_ARCHIVE,
   CLEAR_ARCHIVES,
 };
+
+/** Tags variables */
+const ADD_TAG = "ADD_TAG";
+
+export { ADD_TAG };
