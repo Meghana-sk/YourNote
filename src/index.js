@@ -9,6 +9,8 @@ import {
   NoteProvider,
   TrashProvider,
   ArchiveProvider,
+  TagProvider,
+  FilterProvider,
 } from "./context";
 
 // Call make Server
@@ -19,11 +21,15 @@ ReactDOM.render(
     <BrowserRouter>
       <AuthProvider>
         <NoteProvider>
-          <ArchiveProvider>
-            <TrashProvider>
-              <App />
-            </TrashProvider>
-          </ArchiveProvider>
+          <TagProvider>
+            <ArchiveProvider>
+              <TrashProvider>
+                <FilterProvider>
+                  <App />
+                </FilterProvider>
+              </TrashProvider>
+            </ArchiveProvider>
+          </TagProvider>
         </NoteProvider>
       </AuthProvider>
     </BrowserRouter>

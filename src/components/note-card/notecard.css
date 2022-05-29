@@ -7,12 +7,20 @@
     background-color: whitesmoke;
     padding: 1rem;
     border-radius: 5px;
-    position: relative;
 }
 
 .note-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem
+}
+
+.priority {
+    color: black;
+    font-size: 14px;
+    background-color: white;
+    border-radius: 30%;
 }
 
 .db-actions {
@@ -51,5 +59,18 @@
     flex-direction: column;
     justify-content: center;
     margin-top: 0.5rem;
+}
+
+.tag-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tag-section .tag {
+    background-color: #c2b1b1;
+    border-radius: 10px;
+    padding: 0.2rem 0.5rem;
 }
 

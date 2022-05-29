@@ -1,5 +1,8 @@
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 import "./notes-sidenav.css";
+import { AddTagModal } from "../index";
+import { useTag } from "../../context";
 
 const getActiveStyle = ({ isActive }) =>
   isActive
@@ -9,6 +12,10 @@ const getActiveStyle = ({ isActive }) =>
       }
     : { color: "whitesmoke" };
 const NotesSideNav = () => {
+  const [openTagModal, setOpenTagModal] = useState(false);
+  const {
+    tagState: { tags },
+  } = useTag();
   return (
     <aside className="side-nav bg-side-nav-dark">
       <NavLink to="/notes" style={getActiveStyle}>
@@ -39,36 +46,31 @@ const NotesSideNav = () => {
           <span>Trash</span>
         </div>
       </NavLink>
-      <NavLink to="/home" style={getActiveStyle}>
-        <div className="nav-item">
-          <span>
-            <i className="fas fa-tags"></i>
-          </span>
-          <span>Tags</span>
-        </div>
-      </NavLink>
-      <NavLink to="/home" style={getActiveStyle}>
-        <div className="nav-item">
-          <span>
-            <i className="fas fa-tag"></i>
-          </span>
-          <span>Work</span>
-        </div>
-      </NavLink>
-      <NavLink to="/home" style={getActiveStyle}>
-        <div className="nav-item">
-          <span>
-            <i className="fas fa-tag"></i>
-          </span>
-          <span>Personal</span>
-        </div>
-      </NavLink>
-      <div className="add-tag-container">
-        <button className="btn btn-float nav-item">
-          <i className="fas fa-plus"></i>
-        </button>
-        <label className="tag-label">Add tag</label>
+      <div className="nav-item">
+        <span>
+          <i className="fas fa-tags"></i>
+        </span>
+        <span style={{ color: "whitesmoke" }}>Tags</span>
       </div>
+      {tags.length
+        ? tags.map((tag) => (
+            <NavLink to={`/tags/${tag}`} style={getActiveStyle}>
+              <div className="nav-item tags">
+                <span>
+                  <i className="fas fa-tag"></i>
+                </span>
+                <span>{tag}</span>
+              </div>
+            </NavLink>
+          ))
+        : null}
+      <div className="add-tag-container">
+        <button className="btn nav-item" onClick={() => setOpenTagModal(true)}>
+          <i className="fas fa-plus"></i>
+          <label className="tag-label">Add tag</label>
+        </button>
+      </div>
+      {openTagModal && <AddTagModal setOpenTagModal={setOpenTagModal} />}
     </aside>
   );
 };
