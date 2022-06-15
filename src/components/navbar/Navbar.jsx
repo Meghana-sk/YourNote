@@ -39,16 +39,7 @@ export const Navbar = () => {
           Your Note
         </Link>
       )}
-      {location.pathname !== "/" &&
-        location.pathname !== "/login" &&
-        location.pathname !== "/signup" && (
-          <div className="search-box">
-            <input type="text" placeholder="Search notes..." />
-            <button className="search-btn">
-              <i className="fas fa-search" />
-            </button>
-          </div>
-        )}
+
       <div className="user-section">
         {isUser && (
           <span className="user-name">
