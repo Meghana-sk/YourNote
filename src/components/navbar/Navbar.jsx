@@ -34,7 +34,7 @@ export const Navbar = () => {
 
   return (
     <nav className="nav bg-dark">
-      {location.pathname !== "/home" && (
+      {location.pathname === "/" && (
         <Link to="/" className="brand-name text-l fw-900">
           Your Note
         </Link>

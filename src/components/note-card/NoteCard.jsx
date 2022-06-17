@@ -52,9 +52,6 @@ const NoteCard = ({ note }) => {
         {note.priority ? (
           <p className="priority">{note.priority.toUpperCase()}</p>
         ) : null}
-        <button title="pin" className="btn btn-float">
-          <i className="fas fa-map-pin" />
-        </button>
       </header>
       <div className="note-content">{HtmlParser(note.content)}</div>
       {note.tags !== "" ? (
