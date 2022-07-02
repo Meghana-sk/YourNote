@@ -54,7 +54,7 @@ const NoteCard = ({ note }) => {
         ) : null}
       </header>
       <div className="note-content">{HtmlParser(note.content)}</div>
-      {note.tags !== "" ? (
+      {note.tags.length ? (
         <div className="tag-section">
           <div className="tag">{note.tags}</div>
         </div>
