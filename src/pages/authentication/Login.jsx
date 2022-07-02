@@ -34,7 +34,10 @@ const Login = () => {
       try {
         const loginResponse = await loginService(user);
         if (loginResponse.status === 200) {
-          localStorage.setItem("user", loginResponse.data.foundUser);
+          localStorage.setItem(
+            "user",
+            JSON.stringify(loginResponse.data.foundUser)
+          );
           localStorage.setItem("token", loginResponse.data.encodedToken);
           authDispatch({
             type: LOGIN,
@@ -49,8 +52,10 @@ const Login = () => {
           throw new Error("Something went wrong! Please try again later");
         }
       } catch (error) {
-        toast.error(error.response.data.errors[0]);
+        toast.error(error);
       }
+    } else {
+      toast.error("Username and password can not be empty");
     }
   };
   return (
@@ -63,7 +68,7 @@ const Login = () => {
         <input
           name="email"
           id="email"
-          type="text"
+          type="email"
           placeholder="meghana@yahoo.com"
           className="input-text"
           required

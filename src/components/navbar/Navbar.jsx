@@ -19,6 +19,7 @@ export const Navbar = () => {
   const { archiveDispatch } = useArchive();
   const { trashDispatch } = useTrash();
   const { noteDispatch } = useNote();
+  const userObj = authState?.user || JSON.parse(localStorage.getItem("user"));
 
   const logoutHandler = () => {
     if (authState.token) {
@@ -37,13 +38,13 @@ export const Navbar = () => {
 
   return (
     <nav className="nav bg-dark">
-      <Link to="/" className="brand-name text-l fw-900">
+      <Link to="/home" className="brand-name text-l fw-900">
         Your Note
       </Link>
       <div className="user-section">
         {isUser && (
           <span className="user-name">
-            {isUser ? `Hi, ${authState?.user?.firstName}` : null}
+            {isUser ? `Hi, ${userObj.firstName}` : null}
           </span>
         )}
         <button

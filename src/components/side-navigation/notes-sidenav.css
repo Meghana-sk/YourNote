@@ -3,15 +3,11 @@
     max-width: 28rem;
     height: 100vh;
     position: fixed;
-    top: 1rem;
+    top: 3rem;
     left: 0;
     padding: 0.5rem;
     border-right: 1px solid var(--white-smoke);
     scroll-behavior: auto;
-}
-
-.side-nav .brand-name {
-    color: var(--white-smoke);
 }
 
 .side-nav .nav-item span {
@@ -88,10 +84,9 @@
     .hamburger {
         display: block;
         background-color: inherit;
-        /* padding: 1rem; */
         position: fixed;
-        left: 0.5rem;
-        top: 1rem;
+        left: 1rem;
+        top: 4rem;
         z-index: 200;
     }
     .nav-item i {

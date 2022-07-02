@@ -5,3 +5,15 @@
     align-items: center;
     justify-content: center;
 }
+
+.empty-image {
+    width: 20rem;
+    height: 20rem;
+}
+
+.empty-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

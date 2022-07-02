@@ -31,9 +31,6 @@ const NotesSideNav = () => {
           sideNavOpen ? "side-nav-mobile" : "bg-side-nav-dark"
         }`}
       >
-        {/* <NavLink to="/home" style={getActiveStyle}>
-          <span className="text-l">Your Note</span>
-        </NavLink> */}
         <div className="divider"></div>
         <NavLink to="/home" style={getActiveStyle}>
           <div className="nav-item">
@@ -86,8 +83,8 @@ const NotesSideNav = () => {
             <label className="tag-label">Add tag</label>
           </button>
         </div>
-        {openTagModal && <AddTagModal setOpenTagModal={setOpenTagModal} />}
       </aside>
+      {openTagModal && <AddTagModal setOpenTagModal={setOpenTagModal} />}
     </>
   );
 };
