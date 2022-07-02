@@ -23,11 +23,14 @@ const FilterPopup = ({ setOpenFilter }) => {
       <article className="filter-container">
         <header className="filter-header">
           <h1>Filters</h1>
-          <i className="fas fa-times" onClick={() => setOpenFilter(false)}></i>
+          <i
+            className="fas fa-times cursor-pointer"
+            onClick={() => setOpenFilter(false)}
+          ></i>
         </header>
         <section className="filter-body">
-          <div>
-            <h2>By Priority</h2>
+          <div className="filter-category">
+            <h3>By Priority</h3>
             <div className="radiobtn">
               <input
                 type="radio"
@@ -41,7 +44,7 @@ const FilterPopup = ({ setOpenFilter }) => {
                   })
                 }
               />
-              <label htmlFor="lowToHigh">Low to high</label>
+              <label htmlFor="lowToHigh"> Low to high</label>
             </div>
             <div className="radiobtn">
               <input
@@ -56,11 +59,11 @@ const FilterPopup = ({ setOpenFilter }) => {
                   })
                 }
               />
-              <label htmlFor="hightolow">High to low</label>
+              <label htmlFor="hightolow"> High to low</label>
             </div>
           </div>
-          <div>
-            <h2>By Date</h2>
+          <div className="filter-category">
+            <h3>By Date</h3>
             <div className="radiobtn">
               <input
                 type="radio"
@@ -74,7 +77,7 @@ const FilterPopup = ({ setOpenFilter }) => {
                   })
                 }
               />
-              <label htmlFor="newestNote">Newest first</label>
+              <label htmlFor="newestNote"> Newest first</label>
             </div>
             <div className="radiobtn">
               <input
@@ -89,7 +92,7 @@ const FilterPopup = ({ setOpenFilter }) => {
                   })
                 }
               />
-              <label htmlFor="oldestNote">Oldest first</label>
+              <label htmlFor="oldestNote"> Oldest first</label>
             </div>
           </div>
         </section>

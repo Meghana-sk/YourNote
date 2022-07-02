@@ -43,3 +43,9 @@
     top: 8px;
     right: 10px;
 }
+
+@media (max-width: 600px) {
+    .note-editor {
+        width: 100%;
+    }
+}

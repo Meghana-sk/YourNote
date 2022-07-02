@@ -8,8 +8,10 @@
     justify-content: center;
     align-items: center;
     gap: 2rem;
+    /* margin: 0 auto; */
     margin-right: 2rem;
     margin-left: 200px;
+    /* max-width: calc(100% - 200px); */
 }
 
 .add-note-actions {
@@ -26,4 +28,19 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    max-width: calc(100% - 200px);
+}
+
+@media (max-width: 600px) {
+    .home-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        margin-right: 0;
+        margin-left: 0;
+    }
 }

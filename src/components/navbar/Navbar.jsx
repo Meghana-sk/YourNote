@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth, useArchive, useTrash, useNote } from "../../context";
 import {
@@ -10,9 +10,11 @@ import {
 import "./navbar.css";
 
 export const Navbar = () => {
-  const location = useLocation();
   const { authState, authDispatch } = useAuth();
-  const isUser = authState.token || authState.user ? true : false;
+  const isUser =
+    authState.token ||
+    localStorage.getItem("token") ||
+    (authState.user ? true : false);
   const navigate = useNavigate();
   const { archiveDispatch } = useArchive();
   const { trashDispatch } = useTrash();
@@ -23,6 +25,7 @@ export const Navbar = () => {
       toast.info("Log out successful");
       navigate("/");
       localStorage.removeItem("token");
+      localStorage.removeItem("user");
       authDispatch({ type: LOGOUT });
       trashDispatch({ type: CLEAR_TRASH });
       archiveDispatch({ type: CLEAR_ARCHIVES });
@@ -34,16 +37,13 @@ export const Navbar = () => {
 
   return (
     <nav className="nav bg-dark">
-      {location.pathname === "/" && (
-        <Link to="/" className="brand-name text-l fw-900">
-          Your Note
-        </Link>
-      )}
-
+      <Link to="/" className="brand-name text-l fw-900">
+        Your Note
+      </Link>
       <div className="user-section">
         {isUser && (
           <span className="user-name">
-            {authState.token ? `Hi, ${authState?.user?.firstName}` : null}
+            {isUser ? `Hi, ${authState?.user?.firstName}` : null}
           </span>
         )}
         <button

@@ -31,3 +31,14 @@
 .filter-footer {
     margin-left: auto;
 }
+
+.filter-category {
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}

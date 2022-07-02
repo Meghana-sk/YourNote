@@ -3,7 +3,7 @@
     max-width: 28rem;
     height: 100vh;
     position: fixed;
-    top: 0;
+    top: 1rem;
     left: 0;
     padding: 0.5rem;
     border-right: 1px solid var(--white-smoke);
@@ -54,5 +54,48 @@
 
 .nav-item .tags {
     margin-left: 20px;
+}
+
+.hamburger {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .side-nav-mobile {
+        display: block;
+        background-color: #282b2b;
+        max-width: 28rem;
+        height: 100vh;
+        padding: 0.5rem;
+        border-right: 1px solid var(--white-smoke);
+        scroll-behavior: auto;
+        transition: 0.4s ease;
+        transform: translateX(0%);
+        position: fixed;
+        top: 5rem;
+        left: 0;
+        z-index: 100;
+    }
+    .bg-side-nav-dark {
+        display: none;
+    }
+    .nav-item {
+        display: flex;
+        padding: 1rem;
+        gap: 1.5rem;
+        transition: background-color 0.2s ease;
+    }
+    .hamburger {
+        display: block;
+        background-color: inherit;
+        /* padding: 1rem; */
+        position: fixed;
+        left: 0.5rem;
+        top: 1rem;
+        z-index: 200;
+    }
+    .nav-item i {
+        color: whitesmoke;
+    }
 }
 
