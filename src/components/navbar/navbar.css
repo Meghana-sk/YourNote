@@ -67,3 +67,7 @@
     color: var(--white-smoke);
 }
 
+.login-btn i:hover {
+    color: inherit;
+}
+

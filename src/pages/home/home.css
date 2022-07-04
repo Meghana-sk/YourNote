@@ -33,6 +33,10 @@
     max-width: calc(100% - 200px);
 }
 
+.btn i:hover {
+    color: inherit;
+}
+
 @media (max-width: 600px) {
     .home-container {
         display: flex;
