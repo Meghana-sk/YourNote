@@ -2,15 +2,23 @@ import { useState } from "react";
 import "./tags.css";
 import { useTag } from "../../context";
 import { ADD_TAG } from "../../shared/variables";
+import { toast } from "react-toastify";
 
 const AddTagModal = ({ setOpenTagModal }) => {
   const [tag, setTag] = useState("");
   const { tagDispatch } = useTag();
+  const {
+    tagState: { tags },
+  } = useTag();
 
   const addNewTagHandler = () => {
-    tagDispatch({ type: ADD_TAG, payload: tag });
-    setTag("");
-    setOpenTagModal(false);
+    if (!tags.some((tags) => tags.toLowerCase() === tag.trim().toLowerCase())) {
+      tagDispatch({ type: ADD_TAG, payload: tag });
+      setTag("");
+      setOpenTagModal(false);
+    } else {
+      toast.error("Tag already exists");
+    }
   };
   return (
     <div className="tag-editor-wrapper">

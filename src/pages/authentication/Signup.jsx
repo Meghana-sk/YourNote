@@ -37,32 +37,43 @@ const Signup = () => {
 
   const signupHandler = async (event) => {
     event.preventDefault();
-
-    if (
-      user.email &&
-      user.password === user.confirmPassword &&
-      user.firstName &&
-      user.lastName
-    ) {
-      try {
-        const signupResponse = await signupService(user);
-        if (signupResponse.status === 201) {
-          localStorage.setItem("token", signupResponse.data.encodedToken);
-          authDispatch({
-            type: SIGNUP,
-            payload: {
-              user: signupResponse.data.createdUser,
-              token: signupResponse.data.encodedToken,
-            },
-          });
-          toast.success("Successfully signed up");
-          navigate("/home", { replace: true });
-        } else {
-          toast.error("Something went wrong.Please try again :(");
+    if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(user.email)) {
+      let passwordValidator =
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+      if (user.password.match(passwordValidator)) {
+        if (
+          user.email &&
+          user.password === user.confirmPassword &&
+          user.firstName &&
+          user.lastName
+        ) {
+          try {
+            const signupResponse = await signupService(user);
+            if (signupResponse.status === 201) {
+              localStorage.setItem("token", signupResponse.data.encodedToken);
+              authDispatch({
+                type: SIGNUP,
+                payload: {
+                  user: signupResponse.data.createdUser,
+                  token: signupResponse.data.encodedToken,
+                },
+              });
+              toast.success("Successfully signed up");
+              navigate("/home", { replace: true });
+            } else {
+              toast.error("Something went wrong.Please try again :(");
+            }
+          } catch (error) {
+            toast.error(error.response.data.errors[0]);
+          }
         }
-      } catch (error) {
-        toast.error(error.response.data.errors[0]);
+      } else {
+        toast.error(
+          "Enter password between 8 to 15 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character"
+        );
       }
+    } else {
+      toast.error("Enter valid email");
     }
   };
   return (
@@ -101,7 +112,7 @@ const Signup = () => {
         <input
           name="email"
           id="email"
-          type="text"
+          type="email"
           placeholder="mj@yahoo.com"
           className="input-text"
           required

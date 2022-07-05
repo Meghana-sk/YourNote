@@ -4,16 +4,24 @@
     justify-content: center;
     align-items: center;
     gap: 2rem;
-    height: 80vh;
-    margin: 2rem;
+    height: 100vh;
+    padding: 2rem;
+    background: rgb(148,150,163);
+    background: radial-gradient(circle, rgba(148,150,163,1) 62%, rgba(38,39,42,1) 88%);
 }
 
 .text-large {
     font-size: 3em;
+    color: whitesmoke;
 }
 
 .cta-actions {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    color: whitesmoke;
+}
+
+.page-content p {
+    color: whitesmoke
 }

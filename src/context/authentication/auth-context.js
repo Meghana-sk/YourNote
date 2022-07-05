@@ -6,7 +6,7 @@ const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [authState, authDispatch] = useReducer(authReducer, {
     user: "",
-    token: null,
+    token: localStorage.getItem("token"),
   });
   return (
     <AuthContext.Provider value={{ authState, authDispatch }}>

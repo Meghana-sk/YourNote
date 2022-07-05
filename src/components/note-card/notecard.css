@@ -1,26 +1,31 @@
 .note-card {
     display: flex;
     flex-direction: column;
+    min-width: 300px;
+    min-height: 300px;
     max-width: 30ch;
     max-height: 14rem;
     gap: 0.8rem;
     background-color: whitesmoke;
     padding: 1rem;
     border-radius: 5px;
+    position: relative;
 }
 
 .note-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 0.5rem
+    gap: 0.5rem;
 }
 
 .priority {
-    color: black;
+    color: rgb(57, 54, 54);
     font-size: 14px;
-    background-color: white;
+    background-color: rgb(154, 114, 204);
     border-radius: 30%;
+    padding: 5px;
+    font-weight: bold;
 }
 
 .db-actions {
@@ -54,11 +59,20 @@
 }
 
 .note-footer {
+    width: calc(100% - 1rem);
     display: flex;
     gap: 0.5rem;
     flex-direction: column;
     justify-content: center;
     margin-top: 0.5rem;
+    position: absolute;
+    bottom: 0.5rem;
+}
+
+.db-actions {
+    width: calc(100% - 1rem);
+    display: flex;
+    justify-content: space-around;
 }
 
 .tag-section {
@@ -74,3 +88,15 @@
     padding: 0.2rem 0.5rem;
 }
 
+.note-content {
+    max-height: 50%;
+    overflow: auto;
+    overflow-wrap: break-word;
+    word-break: break-all;
+}
+
+.title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -76,7 +76,9 @@ const NotesModal = ({ setOpenModal, editNote = false, noteData }) => {
             >
               <option value="">Select tag</option>
               {tags.map((tag) => (
-                <option value={tag}>{tag}</option>
+                <option value={tag} key={tag}>
+                  {tag}
+                </option>
               ))}
             </select>
           </div>

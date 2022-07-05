@@ -1,16 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
 
 .nav {
     width: 100%;
     padding: 1rem;
     display: flex;
     align-items: center;
-    justify-content: center;
     position: sticky;
     top: 0;
     background-color: white;
+    z-index: 100;
 }
 
 .nav .brand-name {
+    position: fixed;
     margin: 0 1.5rem;
 }
 
@@ -57,6 +59,15 @@
 }
 
 .user-section:hover {
+    color: inherit;
+}
+
+.brand-name {
+    font-family: 'Caveat', cursive;
+    color: var(--white-smoke);
+}
+
+.login-btn i:hover {
     color: inherit;
 }
 
